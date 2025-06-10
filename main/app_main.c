@@ -27,33 +27,12 @@ EventGroupHandle_t sensor_bits;
 
 const char *TAG = "HUMIDITY_CONTROLLER";
 
-static i2c_bus_handle_t i2c_bus = NULL;
-static sht3x_handle_t sht3x = NULL;
-
-void init_i2c() {
-    const i2c_config_t conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = I2C_MASTER_SDA_IO,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_io_num = I2C_MASTER_SCL_IO,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_speed = I2C_MASTER_FREQ_HZ,
-    };
-
-    i2c_bus = i2c_bus_create(I2C_MASTER_NUM, &conf);
-}
-
-void init_sht3x() {
-    sht3x = sht3x_create(i2c_bus, SHT3x_ADDR_PIN_SELECT_VSS);
-    sht3x_set_measure_mode(sht3x, SHT3x_PER_2_MEDIUM);
-}
-
 void sensor_read_task(void *pvParameters) {
     float humidity = 0;
     float temperature = 0;
 
     while (1) {
-        const esp_err_t err = sht3x_get_humiture(sht3x, &temperature, &humidity);
+        const esp_err_t err = ESP_OK;
 
         if (err != ESP_OK) {
             ESP_LOGE(TAG, "Failed to read SHT3x sensor: %s", esp_err_to_name(err));
@@ -183,9 +162,6 @@ void door_control_task(void *pvParameters) {
 void app_main(void) {
     // Create the event group before starting tasks
     sensor_bits = xEventGroupCreate();
-
-    init_i2c();
-    init_sht3x();
 
     xTaskCreatePinnedToCore(sensor_read_task, "sensor_read_task", 2048, NULL, 5, NULL, 1);
     xTaskCreatePinnedToCore(heater_control_task, "heater_control_task", 1024, NULL, 1, NULL, 1);
