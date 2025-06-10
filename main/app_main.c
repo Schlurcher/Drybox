@@ -4,7 +4,6 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 #include "sdkconfig.h"
-#include "sht3x.h"
 #include "led_control.h"
 
 #define I2C_MASTER_SCL_IO          GPIO_NUM_2              /*!< gpio number for I2C master clock */

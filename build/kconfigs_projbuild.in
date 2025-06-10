@@ -1,7 +1,0 @@
-source "/Users/stefan/esp/esp-idf/components/bootloader/Kconfig.projbuild"
-source "/Users/stefan/esp/esp-idf/components/esp_app_format/Kconfig.projbuild"
-source "/Users/stefan/esp/esp-idf/components/esp_rom/Kconfig.projbuild"
-source "/Users/stefan/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
-source "/Users/stefan/esp/esp-idf/components/partition_table/Kconfig.projbuild"
-source "/Users/stefan/Projects/ESP/Drybox/main/Kconfig.projbuild"
-source "/Users/stefan/Projects/ESP/Drybox/managed_components/espressif__sensor_hub/Kconfig.projbuild"

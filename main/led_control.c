@@ -13,6 +13,8 @@ extern const char *TAG;
 #define BIT_LED_OVERRIDE     (1 << 4)
 #define BIT_HEATER_OVERHEAT  (1 << 2)
 
+#define LED_COUNT 80
+
 led_strip_handle_t led_strip;
 TaskHandle_t led_blink_red_task_handle = NULL;
 
@@ -23,12 +25,18 @@ void led_blink_red_task(void *pvParameters) {
     while (1) {
         led_on = !led_on;
         if (led_on) {
-            led_strip_set_pixel(led_strip, 0, 255, 0, 0); // Red ON
+            led_strip_set_all_pixels(led_strip, 255, 0, 0); // Red ON
         } else {
-            led_strip_set_pixel(led_strip, 0, 0, 0, 0); // OFF
+            led_strip_set_all_pixels(led_strip, 0, 0, 0); // OFF
         }
         led_strip_refresh(led_strip);
         vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
+
+void led_strip_set_all_pixels(led_strip_handle_t handle, uint8_t r, uint8_t g, uint8_t b) {
+    for (int i = 0; i < LED_COUNT; i++) {
+        led_strip_set_pixel(handle, i, r, g, b);
     }
 }
 
