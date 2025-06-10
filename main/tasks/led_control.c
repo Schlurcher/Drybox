@@ -1,6 +1,7 @@
 #include "led_control.h"
 #include "led_strip.h"
 #include "esp_log.h"
+#include "event_bits.h"
 
 #define GPIO_LED 17
 
@@ -8,18 +9,12 @@
 extern EventGroupHandle_t sensor_bits;
 extern const char *TAG;
 
-// Define the event bits (same as in main)
-#define BIT_SENSOR_READY     (1 << 0)
-#define BIT_LED_OVERRIDE     (1 << 4)
-#define BIT_HEATER_OVERHEAT  (1 << 2)
-
 #define LED_COUNT 80
 
 led_strip_handle_t led_strip;
 TaskHandle_t led_blink_red_task_handle = NULL;
 
-// Simple red blink task
-void led_blink_red_task(void *pvParameters) {
+void led_blink_red_task(void *params) {
     bool led_on = false;
 
     while (1) {
@@ -40,7 +35,7 @@ void led_strip_set_all_pixels(led_strip_handle_t handle, uint8_t r, uint8_t g, u
     }
 }
 
-void led_control_task(void *pvParameters) {
+void led_control_task(void *params) {
     // Initialization phase
     ESP_LOGI("LED", "Initializing LED control");
 
