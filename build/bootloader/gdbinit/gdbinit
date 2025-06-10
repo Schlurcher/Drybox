@@ -1,0 +1,2 @@
+source /Users/stefan/Projects/ESP/Drybox/build/bootloader/gdbinit/symbols
+source /Users/stefan/Projects/ESP/Drybox/build/bootloader/gdbinit/connect
