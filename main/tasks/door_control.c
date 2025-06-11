@@ -8,7 +8,8 @@
 
 // External references
 extern EventGroupHandle_t sensor_bits;
-extern const char *TAG;
+
+static const char* TAG = "DOOR_CONTROL";
 
 #define GPIO_DOOR       16
 

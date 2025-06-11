@@ -1,4 +1,28 @@
 dependencies:
+  espressif/cmake_utilities:
+    component_hash: 351350613ceafba240b761b4ea991e0f231ac7a9f59a9ee901f751bddc0bb18f
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1'
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 0.5.3
+  espressif/esp_lvgl_port:
+    component_hash: e720c95cf0667554a204591bb5fade4655fb2990465557041200fa44b5bc7556
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.4'
+    - name: lvgl/lvgl
+      registry_url: https://components.espressif.com
+      require: public
+      version: '>=8,<10'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 2.6.0
   espressif/led_strip:
     component_hash: b578eb926d9f6402fd45398b53c9bd5d1b7a15c1b2974d25aa3088e6c79b0b4c
     dependencies:
@@ -13,8 +37,39 @@ dependencies:
     source:
       type: idf
     version: 5.4.1
+  jack-ingithub/aht20:
+    component_hash: a920995922e89025634182eeeaf74a4c54a27c3052623be6fad7a9cf1c5ecb9b
+    dependencies:
+    - name: espressif/cmake_utilities
+      registry_url: https://components.espressif.com
+      require: private
+      version: 0.*
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    targets:
+    - esp32
+    - esp32c2
+    - esp32c3
+    - esp32c6
+    - esp32h2
+    - esp32s2
+    - esp32s3
+    version: 0.1.1
+  lvgl/lvgl:
+    component_hash: b702d642e03e95928046d5c6726558e6444e112420c77efa5fdb6650b0a13c5d
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 9.3.0
 direct_dependencies:
+- espressif/esp_lvgl_port
 - espressif/led_strip
-manifest_hash: b7cda36bb2c47bffe51a19cbd4723c4cb0cf05700ff30ea8b03ced778b69a94b
+- jack-ingithub/aht20
+manifest_hash: c21e39d1c118f39879b535726abf409e09cb2c236cbc58694326f9d38e978816
 target: esp32
 version: 2.0.0

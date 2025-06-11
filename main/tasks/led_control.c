@@ -7,7 +7,8 @@
 
 // External references
 extern EventGroupHandle_t sensor_bits;
-extern const char *TAG;
+
+static const char* TAG = "LED_CONTROL";
 
 #define LED_COUNT 80
 

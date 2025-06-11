@@ -14,8 +14,8 @@
  * and overheating. The heater is turned off in failsafe conditions
  * like sensor failure or overheating. Otherwise, it turns on when humidity is high.
  *
- * @param pvParameters Pointer to the task parameters, typically unused and set to NULL.
+ * @param params Pointer to the task parameters, typically unused and set to NULL.
  */
-void heater_control_task(void *pvParameters);
+void heater_control_task(void *params);
 
 #endif //HEATER_CONTROL_H
